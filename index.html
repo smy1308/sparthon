@@ -10,7 +10,7 @@
     <style>
 
     .bg {
-        background-image: url("./assets/images/벚꽃배경2.png");
+        background-image: url("./assets/images/Sparthon_BG.png");
         background-size: cover;
         background-repeat: no-repeat;
         margin: 0 auto;
@@ -18,7 +18,7 @@
     }
 
     .title {
-        margin-top: 50px;
+        margin-top: 50%;
         color: #E8344E;
     }
 
@@ -36,41 +36,41 @@
 
     .img1 {
         background-image: url("./assets/images/Bucket01.png");
-			color: white;
+            color: white;
     }
 
     .img2 {
         background-image: url("./assets/images/Bucket02.png");
-			color: #E8344E;
+            color: #E8344E;
     }
 
     .img3 {
         background-image: url("./assets/images/Bucket03.png");
-			color: #E8344E;
+            color: #E8344E;
     }
 
     .img4 {
         background-image: url("./assets/images/Bucket04.png");
-			color: white;
+            color: white;
     }
 
     .img5 {
         background-image: url("./assets/images/Bucket05.png");
-			color: white;
+            color: white;
     }
 
     .img6 {
         background-image: url("./assets/images/Bucket06.png");
-			color: #E8344E;
+            color: #E8344E;
     }
 
     </style>
 </head>
 
-<body class="bg">
+<body class="bg center">
     <h1 class="title">SPARTHON Bucket List</h1>
     <p class="msg">꿈은 꾸는 것이 아닌, 이루는 것이다.</p>
-    <div>
+    <div class="flex-row wrap">
         <div class="bucket img1 center">
         자료 구조 공부 하기
         </div>
@@ -90,7 +90,36 @@
         모두 화이팅!
         </div>
     </div>
-    <script src="script.js"></script>
+        <script>
+// 페이지 로드 시 이전 상태 복원
+    document.addEventListener("DOMContentLoaded", (event) => {
+    const buckets = document.querySelectorAll(".bucket");
+    buckets.forEach((bucket, index) => {
+        // 로컬 스토리지에서 상태 읽기
+        const isDone = localStorage.getItem("bucket" + index) === "done";
+        if (isDone) {
+        bucket.classList.add("done");
+        }
+    });
+    });
+
+    // 버킷 리스트 클릭 이벤트
+    const buckets = document.querySelectorAll(".bucket");
+    buckets.forEach((bucket, index) => {
+    bucket.addEventListener("click", function () {
+        // 클래스 토글
+        bucket.classList.toggle("done");
+
+        // 로컬 스토리지에 상태 저장
+        if (bucket.classList.contains("done")) {
+        localStorage.setItem("bucket" + index, "done");
+        } else {
+        localStorage.setItem("bucket" + index, "");
+        }
+    });
+    });
+</script>
+
 </body>
 
 </html>
